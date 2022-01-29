@@ -1,6 +1,6 @@
 {
-    "name": "rayworld",
-    "short_name": "rayworld",
+    "name": "practice_flutter_flame",
+    "short_name": "practice_flutter_flame",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

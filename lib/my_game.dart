@@ -1,3 +1,7 @@
+// Copyright (c) 2022, Kato Shinya. All rights reserved.
+// Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/services.dart';
@@ -10,7 +14,7 @@ import 'package:flutter/material.dart';
 
 import 'helpers/map_loader.dart';
 
-class RayWorldGame extends FlameGame with HasCollidables, KeyboardEvents {
+class MyGame extends FlameGame with HasCollidables, KeyboardEvents {
   final Player _player = Player();
   final World _world = World();
 
@@ -27,7 +31,7 @@ class RayWorldGame extends FlameGame with HasCollidables, KeyboardEvents {
   }
 
   void addWorldCollision() async =>
-      (await MapLoader.readRayWorldCollisionMap()).forEach((rect) {
+      (await MapLoader.readCollisionMap()).forEach((rect) {
         add(WorldCollidable()
           ..position = Vector2(rect.left, rect.top)
           ..width = rect.width

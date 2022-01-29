@@ -1,3 +1,7 @@
+// Copyright (c) 2022, Kato Shinya. All rights reserved.
+// Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
 import 'package:flame/components.dart';
 import 'package:flame/geometry.dart';
 import 'world_collidable.dart';
@@ -5,7 +9,7 @@ import '../helpers/direction.dart';
 import 'package:flame/sprite.dart';
 
 class Player extends SpriteAnimationComponent
-    with HasGameRef, Hitbox, Collidable {
+    with HasGameRef, HasHitboxes, Collidable {
   final double _playerSpeed = 300.0;
   final double _animationSpeed = 0.15;
 
@@ -29,7 +33,7 @@ class Player extends SpriteAnimationComponent
   @override
   Future<void> onLoad() async {
     super.onLoad();
-    _loadAnimations().then((_) => {animation = _standingAnimation});
+    await _loadAnimations();
   }
 
   @override
@@ -75,6 +79,8 @@ class Player extends SpriteAnimationComponent
 
     _standingAnimation =
         spriteSheet.createAnimation(row: 0, stepTime: _animationSpeed, to: 1);
+
+    animation = _standingAnimation;
   }
 
   void movePlayer(double delta) {
